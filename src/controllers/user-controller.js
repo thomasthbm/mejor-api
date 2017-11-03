@@ -44,7 +44,7 @@ exports.post = async(req, res, next) => {
     }
 
     try {
-        await repository.create({
+        let user = await repository.create({
             email: req.body.email,
             name: req.body.name,
             birthDate: req.body.birthDate,
@@ -54,7 +54,8 @@ exports.post = async(req, res, next) => {
             created: Date.now()
         });
         res.status(201).send({
-            message: 'Usuário cadastrado com sucesso!'
+            message: 'Usuário cadastrado com sucesso!',
+            user: user
         });
     } catch (e) {
         res.status(500).send([{

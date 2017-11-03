@@ -3,6 +3,7 @@
 const app = require('../src/app');
 const debug = require('debug')('thbm:server');
 const http = require('http');
+const job = require('../src/jobs/deleteUser');
 
 const port = normalizePort(process.env.PORT || '5000');
 app.set('port', port);

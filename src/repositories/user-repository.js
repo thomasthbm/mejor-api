@@ -26,4 +26,5 @@ exports.getByEmail = async(email) => {
 exports.create = async(data) => {
     let user = new User(data);
     await user.save();
+    return user._id;
 }
