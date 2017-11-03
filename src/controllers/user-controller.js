@@ -2,6 +2,7 @@
 
 const ValidationContract = require('../validators/fluent-validator');
 const repository = require('../repositories/user-repository');
+const scheduleRespository = require('../repositories/schedule-repository');
 const guid = require('guid');
 const moment = require('moment');
 
@@ -44,6 +45,10 @@ exports.post = async(req, res, next) => {
     }
 
     try {
+
+        let createDate = moment(Date.now());
+        let expirationDate = moment(createDate).add(3, 'day');
+
         let user = await repository.create({
             email: req.body.email,
             name: req.body.name,
@@ -51,7 +56,8 @@ exports.post = async(req, res, next) => {
             localization: req.body.localization,
             height: req.body.height,
             weight: req.body.weight,
-            created: Date.now()
+            created: createDate,
+            expiration: expirationDate
         });
         res.status(201).send({
             message: 'Usuário cadastrado com sucesso!',
@@ -63,3 +69,25 @@ exports.post = async(req, res, next) => {
         }]);
     }
 };
+
+exports.delete = async(req, res, next) => {
+    try {
+        await repository.delete();
+        res.status(201).send({
+            message: 'Usuário excluido com sucesso!'
+        });
+
+    } catch (error) {
+        res.status(500).send({
+            message: 'Falha ao processar sua requisição'
+        });
+    }
+
+}
+
+exports.deleteExpiredUsers = function() {
+
+    repository.delete();
+    scheduleRespository.delete();
+
+}

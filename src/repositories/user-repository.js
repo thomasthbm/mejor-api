@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-
+const moment = require('moment');
 
 exports.get = async() => {
     const res = await User
@@ -27,4 +27,13 @@ exports.create = async(data) => {
     let user = new User(data);
     await user.save();
     return user._id;
+}
+
+exports.delete = async() => {
+    await User
+        .find({ expiration: { $lt: moment(Date.now()) } }).exec(function(err, users) {
+            users.forEach(function(u) {
+                u.remove();
+            })
+        });
 }

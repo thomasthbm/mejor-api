@@ -31,6 +31,10 @@ const schema = new Schema({
     created: {
         type: Date,
         required: true
+    },
+    expiration: {
+        type: Date,
+        require: true
     }
 });
 

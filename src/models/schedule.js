@@ -13,6 +13,14 @@ const schema = new Schema({
     calendar: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Calendar'
+    },
+    created: {
+        type: Date,
+        required: true
+    },
+    expiration: {
+        type: Date,
+        required: true
     }
 
 });
