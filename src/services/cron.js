@@ -10,8 +10,8 @@ const log = log4js.getLogger('cron');
 module.exports = function() {
     let rule_deleteExpiredUsers = new schedule.RecurrenceRule();
     rule_deleteExpiredUsers.name = 'Schedule in User Controller - Delete Expired Users';
-    rule_deleteExpiredUsers.hour = 19;
-    rule_deleteExpiredUsers.minute = 2;
+    rule_deleteExpiredUsers.hour = 3;
+    rule_deleteExpiredUsers.minute = 0;
 
     log.info('Delete Expired Users at ' + rule_deleteExpiredUsers.hour + ':' + rule_deleteExpiredUsers.minute + '.');
     schedules.runner(rule_deleteExpiredUsers, users.deleteExpiredUsers);
