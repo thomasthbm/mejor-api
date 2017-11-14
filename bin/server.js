@@ -1,10 +1,8 @@
 'use strict'
 
-//const cron = require('../src/services/cron.js');
 const app = require('../src/app');
 const debug = require('debug')('thbm:server');
 const http = require('http');
-//const cron = require('node-cron');
 const cron = require('../src/services/cron');
 
 const port = normalizePort(process.env.PORT || '5000');

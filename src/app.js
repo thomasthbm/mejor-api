@@ -13,9 +13,9 @@ const router = express.Router();
 mongoose.connect(config.connectionString);
 
 //Carrega os models
-const Schedule = require('./models/Schedule');
-const User = require('./models/User');
-const Calendar = require('./models/Calendar');
+const Schedule = require('./models/schedule');
+const User = require('./models/user');
+const Calendar = require('./models/calendar');
 
 //carrega as rotas
 const indexRoute = require('./routes/index-route');
